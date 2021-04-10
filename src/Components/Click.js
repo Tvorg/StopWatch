@@ -1,5 +1,5 @@
 import { fromEvent,  } from 'rxjs';
-import { map, buffer, filter, debounceTime} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 
 function Click(){
