@@ -18,7 +18,6 @@ function DoubleClick(ref, callbackDoubleClick) {
     )
 
     doubleClick$.subscribe(() => {
-        console.log('doubleclick')
        if(callbackDoubleClick) {
            callbackDoubleClick()
        }

@@ -6,7 +6,6 @@ function BtnComponent(props) {
     const buttonRef = useRef();
 
     useEffect (() => {
-         console.log(buttonRef)
          if(buttonRef.current){
              DoubleClick(buttonRef.current, props.wait )
          }
