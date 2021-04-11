@@ -14,21 +14,21 @@ function App() {
   const start = () => {
     run();
     setStatus(1);
-    setInterv(setInterval(run, 10));
+    setInterv(setInterval(run, 1000));
   };
 
   var  updatedS = time.s, updatedM = time.m, updatedH = time.h;
 
   const run = () => {
-    if(updatedM === 24){
+    if(updatedM === 23){
       updatedH++;
       updatedH = 0;
     }
-    if(updatedM === 60){
+    if(updatedM === 59){
       updatedH++;
       updatedM = 0;
     }
-    if(updatedS === 60){
+    if(updatedS === 59){
       updatedM++;
       updatedS = 0;
     }
@@ -39,16 +39,15 @@ function App() {
 
   const stop = () => {
     clearInterval(interv);
-    setStatus(2);
+    setStatus(0);
     setTime({s:0, m:0, h:0})
   };
 
   const reset = () => {
-    clearInterval(interv);
     setTime({s:0, m:0, h:0})
-    // run()
-    // setInterv(setInterval(run, 10));
-    setStatus(2);
+    clearInterval(interv);
+    setInterv(setInterval(run, 1000));
+    setStatus(3);
   };
 
   const wait = () => {

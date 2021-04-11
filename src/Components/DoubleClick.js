@@ -1,14 +1,15 @@
 import { fromEvent,  } from 'rxjs';
 import { map, buffer, filter, debounceTime } from 'rxjs/operators';
 
-function DoubleClick() {
-    const mouse$ = fromEvent(document, 'click')
+
+function DoubleClick(ref, callbackDoubleClick) {
+    const mouse$ = fromEvent(ref, 'click')
 
     const buff$ = mouse$.pipe(
         debounceTime(299),
     )
 
-    const click$ = mouse$.pipe(
+    const doubleClick$ = mouse$.pipe(
         buffer(buff$),
         map(list => {
             return list.length;
@@ -16,8 +17,11 @@ function DoubleClick() {
         filter(x => x === 2),
     )
 
-    click$.subscribe(() => {
+    doubleClick$.subscribe(() => {
         console.log('doubleclick')
+       if(callbackDoubleClick) {
+           callbackDoubleClick()
+       }
     })
 }
 export default DoubleClick;
