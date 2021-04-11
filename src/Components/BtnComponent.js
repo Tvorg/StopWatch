@@ -1,11 +1,18 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import DoubleClick from "./DoubleClick";
 
 
-<DoubleClick/>
-
-
 function BtnComponent(props) {
+    const buttonRef = useRef();
+
+    useEffect (() => {
+         if(buttonRef.current){
+             DoubleClick(buttonRef.current, props.wait )
+         }
+
+
+    }, [buttonRef.current])
+
     return (
         <div>
             {(props.status === 0)?
@@ -15,8 +22,10 @@ function BtnComponent(props) {
 
             {(props.status === 1)?
                 <div>
-                    <button className="stopwatch-btn stopwatch-btn-yel"
-                            onDoubleClick={props.wait}>Wait</button>
+                    <button
+                        ref={buttonRef}
+                        className="stopwatch-btn stopwatch-btn-yel"
+                    >Wait</button>
                     <button className="stopwatch-btn stopwatch-btn-yel"
                             onClick={props.reset}>Reset</button>
                     <button className="stopwatch-btn stopwatch-btn-red"
@@ -30,6 +39,21 @@ function BtnComponent(props) {
                             onClick={props.start}>Start</button>
                     <button className="stopwatch-btn stopwatch-btn-yel"
                             onClick={props.reset}>Reset</button>
+                    <button className="stopwatch-btn stopwatch-btn-red"
+                            onClick={props.stop}>Stop</button>
+                </div> : ""
+            }
+
+            {(props.status === 3)?
+                <div>
+                    <button
+                        ref={buttonRef}
+                        className="stopwatch-btn stopwatch-btn-yel"
+                    >Wait</button>
+                    <button className="stopwatch-btn stopwatch-btn-yel"
+                            onClick={props.reset}>Reset</button>
+                    <button className="stopwatch-btn stopwatch-btn-red"
+                            onClick={props.stop}>Stop</button>
                 </div> : ""
             }
 
